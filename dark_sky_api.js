@@ -41,7 +41,7 @@ app.get('/api', cache('60 minutes'), function (request, response, next) {
     .catch(next);
 });
 
-
-app.listen(8000, function () {
-  console.log('Listening on port 8000');
+var PORT = process.env.PORT || 8000;
+app.listen(PORT, function () {
+  console.log('Listening on port ' + PORT);
 });
