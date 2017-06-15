@@ -3,8 +3,8 @@ var app = express();
 var pgp = require('pg-promise')({
   promiseLib: Promise
 });
-var db = pgp({
-  database: 'zipcode'
+var db = pgp(process.env.DATABASE_URL
+|| {database: 'zipcode'
 });
 
 var apicache = require('apicache');
