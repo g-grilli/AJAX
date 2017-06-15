@@ -1,0 +1,39 @@
+/* NAVBAR */
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px
+}
+
+.navbar-nav li a:hover {
+  color: #1abc9c;
+}
+
+
+ /* GENERAL */
+.container-fluid {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+body { 
+  font: 15px "Montserrat", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+      
+.footer li a {
+  color: #ffffff;
+  font-size: 12px;
+}
+      
+.footer li a:hover {
+  color: #7fffd4;
+  font-size: 14px;
+}

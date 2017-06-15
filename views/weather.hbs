@@ -1,0 +1,93 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>Have a Nice Day Weather</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/axios/axios.js"></script>
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+   <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">HAVE A NICE DAY</a>
+      </div>
+      <div class="collapse navbar-collapse" id ="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">WEATHER</a></li>
+          <li><a href="#">TIME</a></li>
+          <li><a href="#">GEO COORDINATES</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+    <div class ="container-fluid bg-1 text-center">
+      <h1 id="location"></h1>
+      <h2 id="temp"></h2><p>Degrees Farenheit</p>
+      <h2 id="icon"></h2><p>Is what it looks like!</p>
+      <h2 id="humid"></h2><p>Humidity</p>
+      <h2 id="wind"></h2><p>Wind Speed in MPH</p>
+      <h2 id="uv"></h2><p>uv Index</p>
+    </div>
+    <div class="container-fluid footer bg-2">
+      <form action="/" class="zipcode" onsubmit="return lookup()">
+        <label>Change Zip Code</label>
+        <input type="text" name="zip_code" id="zip_code" value="77379">
+        <button type="submit" class="btn btn-default btn-sm">Submit</button>
+      </form>
+    </div>
+
+    <!--FOOTER-->
+    <div class="container-fluid footer bg-3">
+      <h4>Contact:</h4>
+      <div class="row">
+        <div class="col-sm-6">
+          <ul>
+            <li><a href="">Github</a></li>
+            <li><a href="">Email</a></li>
+            <li><a href="">LinkedIn</a></li>
+            <li><a href="https://darksky.net/poweredby/">Powerd by Dark Sky</a></li>
+          </ul>
+      <h6> Gene Grilli Produtions</h6>
+      </div>
+    </div>
+    <script>
+      function  lookup () {
+        var zip_code = document.getElementById('zip_code').value;
+        axios.get('/api', {params: {zip_code: zip_code}})
+       .then(function (response) {
+         console.log(response.data);
+         var t = document.getElementById('temp');
+         t.innerHTML = response.data.ds.currently.temperature;
+         var i = document.getElementById('icon');
+         i.innerHTML = response.data.ds.currently.icon;
+         var h = document.getElementById('humid');
+         h.innerHTML = response.data.ds.currently.humidity;
+         var s = document.getElementById('wind');
+         s.innerHTML = response.data.ds.currently.windSpeed;
+         var u = document.getElementById('uv');
+         u.innerHTML = response.data.ds.currently.uvIndex;
+         var l = document.getElementById('location');
+         l.innerHTML = response.data.db.location_text;
+         console.log(response.data.db);
+       });
+        return false;
+      }
+      
+    </script>
+
+</body>
+</html>
+    </script>
+  </body>
+</html>
